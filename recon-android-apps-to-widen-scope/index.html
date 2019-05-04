@@ -1,0 +1,215 @@
+
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <link href="//gmpg.org/xfn/11" rel="profile">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+    <!-- Enable responsiveness on mobile devices-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+    <title>Recon Android apps to widen scope</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="/assets/css/highlight.css?v=8cf6512093">
+    <link rel="stylesheet" type="text/css" href="/assets/css/prism.css?v=8cf6512093">
+    <link rel="stylesheet" type="text/css" href="/assets/css/poole.css?v=8cf6512093">
+    <link rel="stylesheet" type="text/css" href="/assets/css/icon.css?v=8cf6512093">
+    <link rel="stylesheet" type="text/css" href="/assets/css/syntax.css?v=8cf6512093">
+    <link rel="stylesheet" type="text/css" href="/assets/css/oscar.css?v=8cf6512093">
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Lato:100,300,300italic">
+
+    <!-- Icons -->
+    <link rel="shortcut icon" href="/favicon.ico">
+
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="canonical" href="https://gerbenjavado.com/recon-android-apps-to-widen-scope/" />
+    <meta name="referrer" content="no-referrer-when-downgrade" />
+    
+    <meta property="og:site_name" content="Gerben Javado" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Recon Android apps to widen scope" />
+    <meta property="og:description" content="Even though it is &amp;quot;common&amp;quot; knowledge that mobile apps are undertested, I  often talk to people that have been hunting bugs for a while but don&#x27;t include mobile apps in their tests. To me this is somewhat strange since a lot of vulnerabilities I found were discovered through" />
+    <meta property="og:url" content="https://gerbenjavado.com/recon-android-apps-to-widen-scope/" />
+    <meta property="article:published_time" content="2017-11-18T11:51:00.000Z" />
+    <meta property="article:modified_time" content="2018-05-15T21:00:51.000Z" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Recon Android apps to widen scope" />
+    <meta name="twitter:description" content="Even though it is &amp;quot;common&amp;quot; knowledge that mobile apps are undertested, I  often talk to people that have been hunting bugs for a while but don&#x27;t include mobile apps in their tests. To me this is somewhat strange since a lot of vulnerabilities I found were discovered through" />
+    <meta name="twitter:url" content="https://gerbenjavado.com/recon-android-apps-to-widen-scope/" />
+    <meta name="twitter:label1" content="Written by" />
+    <meta name="twitter:data1" content="Gerben Javado" />
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "Gerben Javado",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://gerbenjavado.com/favicon.ico",
+            "width": 60,
+            "height": 60
+        }
+    },
+    "headline": "Recon Android apps to widen scope",
+    "url": "https://gerbenjavado.com/recon-android-apps-to-widen-scope/",
+    "datePublished": "2017-11-18T11:51:00.000Z",
+    "dateModified": "2018-05-15T21:00:51.000Z",
+    "description": "Even though it is &amp;quot;common&amp;quot; knowledge that mobile apps are undertested, I  often talk to people that have been hunting bugs for a while but don&#x27;t include mobile apps in their tests. To me this is somewhat strange since a lot of vulnerabilities I found were discovered through",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://gerbenjavado.com/"
+    }
+}
+    </script>
+  </head>
+
+  <body class="post-template">
+
+    <div class="masthead">
+        <div class="container">
+            <h2 class="masthead-title">
+                <a href="https://gerbenjavado.com" title="Home">Gerben Javado</a>
+                <small>Security &amp; Bug Bounty Stories</small>
+            </h2>
+        </div>
+        <nav class="nav container">
+        <a class="nav-item sidebar-nav-home " href="https://gerbenjavado.com/">
+            <i class="nav-icon icon-home"></i>
+        </a>
+        <a class="nav-item sidebar-nav-hackerone " href="https://hackerone.com/gerben_javado">
+            <i class="nav-icon icon-hackerone"></i>
+        </a>
+        <a class="nav-item sidebar-nav-linkedin " href="https://www.linkedin.com/in/gerben-janssen-van-doorn-85aa70131/">
+            <i class="nav-icon icon-linkedin"></i>
+        </a>
+        <a class="nav-item sidebar-nav-twitter " href="https://twitter.com/gerben_javado">
+            <i class="nav-icon icon-twitter"></i>
+        </a>
+        <a class="nav-item sidebar-nav-github " href="https://github.com/GerbenJavado/">
+            <i class="nav-icon icon-github"></i>
+        </a>
+        <a class="nav-item sidebar-nav-user " href="https://gerbenjavado.com/about-me/">
+            <i class="nav-icon icon-user"></i>
+        </a>
+</nav>
+
+    </div>
+    <div class="container tag-nav"></div>
+
+    <div class="container content">
+        
+<article class="post">
+
+    
+    <header class="post-header">
+      <h1 class="post-title">Recon Android apps to widen scope</h1>
+      <section class="post-meta">
+          <time class="post-date" datetime="2017-11-18">November 18, 2017</time>
+          <span class="tags"></span>
+      </section>
+      
+  </header>
+
+
+    <section class="post-content">
+      <p>Even though it is &quot;common&quot; knowledge that mobile apps are undertested, I  often talk to people that have been hunting bugs for a while but don't include mobile apps in their tests. To me this is somewhat strange since a lot of vulnerabilities I found were discovered through inspecting the mobile app and didn't take rocket science to figure out. Thus in this blog I will try and provide a comprehensive but basic overview of how to test android apps (although most methods also apply for iOS) and use them to widen the scope of your bug bounty program.</p>
+<h2 id="environment">Environment</h2>
+<p>Before moving on to decompiling the actual app it makes sense to first define the tools, hardware and initial techniques I use or ones that you can use. To run the app you basically have two options: an emulator or your own (rooted) phone. For compatibility reasons I prefer using my phone, but I have the android emulator <a href="https://www.genymotion.com/fun-zone/">Genymotion</a> installed if I ever need android apps on my laptop.</p>
+<p>The second step is to make sure you have the app (APK) file installed on your device. Here you can install the app via the Google Play Store and get the APK by browsing to <code>/data/app/{PACKAGE_NAME}/base.apk</code> on your mobile device or get it from an APK library like <a href="https://apkpure.com/">APKPure</a>.</p>
+<p>Once you have installed the app make sure you proxy the traffic of your phone through Burp Suite. Setting this up should be fairly easy using <a href="https://support.portswigger.net/customer/portal/articles/1841101-configuring-an-android-device-to-work-with-burp">tutorial setup</a> and <a href="https://support.portswigger.net/customer/portal/articles/1841102-Mobile%20Set-up_Android%20Device%20-%20Installing%20CA%20Certificate.html">tutorial certificate</a>.</p>
+<h2 id="usingtheapp">Using the app</h2>
+<p>Often one of the most important things to do is just proxying all the functions/actions you can find in the mobile app through Burp, much like you would do in a normal web app. The main point here is to discover as much as possible. In my experience companies almost always use different endpoints for their mobile app than they do for their web app. Often mobile apps use API like structures, which contain less XSSes and other client-side vulnerabilities, but more server-side vulnerabilities like IDORs. There is not much more to this phase than any test where you use Burp.</p>
+<p>If for some reasons the app is not making any connection to the server or Burp isn't catching any responses you are likely dealing with either SSL pinning or non-http traffic. My first advice is to try and see if <a href="https://play.google.com/store/apps/details?id=app.greyshirts.sslcapture&amp;hl=nl">Packet Capture</a> shows any weird data coming from the app to a port that isn't 80 or 443 or anything involving those numbers (8443). If you are just seeing empty data to a https port (443) you are likely dealing with SSL pinning. While I'm not an expert on this solutions like <a href="https://github.com/iSECPartners/Android-SSL-TrustKiller">SSL TrustKiller</a> and <a href="https://github.com/ac-pm/SSLUnpinning_Xposed">SSLUnpinning</a> might help getting past those (bypasses standard libraries). For more information read the detailed blog on <a href="https://blog.it-securityguard.com/the-stony-path-of-android-%F0%9F%A4%96-bug-bounty-bypassing-certificate-pinning/">bypassing certificate pinning</a> by Patrik Fehrenbach.</p>
+<h2 id="staticanalysis">Static analysis</h2>
+<p>While I'm not a hero in static analysis I have discovered some simple tricks that make it possible for me to gain a lot out of the code of a mobile app. This all without being able to read smali code or walking through huge blocks of (obfuscated) Java code. This is also very useful if the app is performing SSL pinning, since this is a method to still find the endpoints the app uses.</p>
+<p>First of all, I decompile the APK file both with <a href="https://ibotpeaches.github.io/Apktool/">Apktool</a> and <a href="https://sourceforge.net/projects/dex2jar/">Dex2jar</a> and merge these files in one folder to keep everything together. After this my rule is: use smali code for tool analysis and the Java code to read the stuff found in the smali code. I'll explain what I mean with this.</p>
+<p>One method I like is using grep to find certain endpoints in the smali code (also use grep to look for secrets or basic auth). Here I navigate in the terminal to the folder with the smali code and use the RegEx parameter to specify my search. The point here is to find a similarity in all the endpoints the mobile app uses (discovered through Burp) and develop a RegEx for this to find more occurrences like this. This can be as simple as <code>\.json</code> or <code>http(s)?://</code> to find endpoints with a json extension or http prefix. The command looks the following (exclude the <code>h</code> if you want the file names):</p>
+<pre><code class="shell">$ grep -hnrE "\.json" /Users/Gerben/smali/</code></pre>
+<p>The results that you get from this command can be easily searched in JD-GUI to find the files where they are mentioned. Here you can also find parameters that are needed to reconstruct the full URL. These parameters should be fairly obvious if you are used to at least reading a programming language.</p>
+<p><img src="/content/images/2018/03/java-1.png" alt="java-code"><br>
+<em>Three parameters plus the endpoint (feedback.json) in red boxes</em></p>
+<p>A second method I recently adopted is using <a href="https://github.com/GerbenJavado/LinkFinder">LinkFinder</a> to find all URLs in the smali code of an app. LinkFinder itself takes about 20-40 seconds, however copying all the smali files in one folder with random names (prevent overwriting) takes a bit longer. Thus, <a href="https://twitter.com/tomnomnom">tomnomnom</a> and I developed an one-line bash script that decompiles the app, copies the files to one subfolder and then runs LinkFinder over these files (usually a couple thousand). It can be useful to delete folders with smali code that contain external libraries (e.g. <code>/com/Google/*</code>) to hide results that do not belong to your scope.</p>
+<pre><code class="shell">$ apktool d app.apk; cd app;mkdir collection; find . -name \*.smali -exec sh -c 'cp "$1" collection/$(head /dev/urandom | md5 | cut -d" " -f1).smali' _ {} \;; linkfinder.py -i 'collection/*.smali' -o cli</code></pre>
+<p>You'll probably get a bunch of results. To narrow this down use the RegEx option (-r) in LinkFinder to narrow down the endpoints and list ones that confirm to a certain pattern. Again same method applies here, look for these endpoints in the Java code using JD-GUI. Like:</p>
+<pre><code class="shell">$ linkfinder.py -i 'collection/*.smali' -o cli -r '\.json'</code></pre>
+<p>Thirdly, after decompiling check the <code>/assets</code> and <code>/res/raw</code> folders. Sometimes valuable files can be left here (source: <a href="https://www.youtube.com/watch?v=OLgmPxTHLuY">Advanced Android Bug Bounty skills - Ben Actis</a>, this resource is very good for android bugs, like vulnerable intents).</p>
+<p>Finally, comparing these methods among different versions of the app might help you to gain an understanding of what was added in a new version. New endpoint are likely untested and might contain new vulnerabilities.</p>
+<h2 id="realworldexample">Real world example</h2>
+<p>Using a grep search I found that the following endpoint was present in the mobile app I was testing: <code>order/number_verification/verify_phone.json?</code>. Looking for this endpoint in the Java code generated by dex2jar I found that this particular piece of code wasn't converted due to an error (this happens quite often). Thus I went back to the original smali file where the endpoint was found. Here I was faced with the following code (try and make sense of it yourself):</p>
+<pre><code class="smali">const-string v2, "order/number_verification/verify_phone.json?"
+
+invoke-virtual {v0, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+move-result-object v0
+
+invoke-static {}, Lcom/████████/a/d/c/a;->a()Ljava/lang/String;
+
+move-result-object v2
+
+invoke-virtual {v0, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+move-result-object v0
+
+invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+move-result-object v0
+
+.line 383
+new-instance v2, Lb/q$a;
+
+invoke-direct {v2}, Lb/q$a;-><init>()V
+
+.line 384
+const-string v3, "verification_type"
+
+iget-object v4, p0, Lcom/library/████████/ordering/order/CheckPhoneVerificationFragment$VerifyPhone;->verificationType:Ljava/lang/String;
+
+invoke-virtual {v2, v3, v4}, Lb/q$a;->a(Ljava/lang/String;Ljava/lang/String;)Lb/q$a;
+
+.line 385
+const-string v3, "phone"
+
+const/4 v4, 0x0
+
+aget-object v4, p1, v4
+
+invoke-virtual {v2, v3, v4}, Lb/q$a;->a(Ljava/lang/String;Ljava/lang/String;)Lb/q$a;
+
+.line 386
+const-string v3, "country_id"</code></pre>
+<p>As you might have noticed we see the URL up top, and three <code>const-string</code>s which look a lot like parameters. After playing around with these variables I found that a valid request would be:</p>
+<pre><code>POST /v2/order/number_verification/verify_phone.json HTTP/1.1
+Body: verification_type=sms&amp;phone=612345678&amp;country_id=1
+</code></pre>
+<p>This request would leak the verification code that was going to be send to the mobile device in the response body. Leaking this allows an attacker to bypass the phone verification completely and potentially bypass 2FA.</p>
+
+    </section>
+
+  <footer class="post-footer">
+        <div class="more-posts">
+        <span class="pull-right"><a href="/manual-sql-injection-discovery-tips/">Manual SQL injection discovery tips ⇢ </a></span>
+        </div>
+  </footer>
+
+</article>
+
+    </div>
+
+    <script type="text/javascript" data-cfasync="false" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
+    <script type="text/javascript" src="/assets/js/highlight.pack.js?v=8cf6512093"></script>
+    <script type="text/javascript" src="/assets/js/gallery.js?v=8cf6512093"></script>
+    <script type="text/javascript" src="/assets/js/prism.js?v=8cf6512093"></script>
+    <script type="text/javascript" src="/assets/js/oscar.js?v=8cf6512093" data-cfasync="false"></script>
+    
+    <script>hljs.initHighlightingOnLoad();</script>
+
+    
+  </body>
+</html>
+
