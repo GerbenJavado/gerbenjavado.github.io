@@ -1,0 +1,221 @@
+
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <link href="//gmpg.org/xfn/11" rel="profile">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+    <!-- Enable responsiveness on mobile devices-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+    <title>The race to the top of a bug bounty program</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="/assets/css/highlight.css?v=8cf6512093">
+    <link rel="stylesheet" type="text/css" href="/assets/css/prism.css?v=8cf6512093">
+    <link rel="stylesheet" type="text/css" href="/assets/css/poole.css?v=8cf6512093">
+    <link rel="stylesheet" type="text/css" href="/assets/css/icon.css?v=8cf6512093">
+    <link rel="stylesheet" type="text/css" href="/assets/css/syntax.css?v=8cf6512093">
+    <link rel="stylesheet" type="text/css" href="/assets/css/oscar.css?v=8cf6512093">
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Lato:100,300,300italic">
+
+    <!-- Icons -->
+    <link rel="shortcut icon" href="/favicon.ico">
+
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="canonical" href="https://gerbenjavado.com/the-race-to-the-top-of-a-bug-bounty-program/" />
+    <meta name="referrer" content="no-referrer-when-downgrade" />
+    <link rel="amphtml" href="https://gerbenjavado.com/the-race-to-the-top-of-a-bug-bounty-program/amp/" />
+    
+    <meta property="og:site_name" content="Gerben Javado" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="The race to the top of a bug bounty program" />
+    <meta property="og:description" content="Recently I had unusual success on a public program on HackerOne. Here is my story on how I approached this program, what I found and how I found it. July the 1st troubleshooter shared a link in the Bug Bounty Forum Slack channel, showing that a public HackerOne program was" />
+    <meta property="og:url" content="https://gerbenjavado.com/the-race-to-the-top-of-a-bug-bounty-program/" />
+    <meta property="article:published_time" content="2017-07-25T12:54:54.000Z" />
+    <meta property="article:modified_time" content="2018-03-30T13:09:09.000Z" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="The race to the top of a bug bounty program" />
+    <meta name="twitter:description" content="Recently I had unusual success on a public program on HackerOne. Here is my story on how I approached this program, what I found and how I found it. July the 1st troubleshooter shared a link in the Bug Bounty Forum Slack channel, showing that a public HackerOne program was" />
+    <meta name="twitter:url" content="https://gerbenjavado.com/the-race-to-the-top-of-a-bug-bounty-program/" />
+    <meta name="twitter:label1" content="Written by" />
+    <meta name="twitter:data1" content="Gerben Javado" />
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "Gerben Javado",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://gerbenjavado.com/favicon.ico",
+            "width": 60,
+            "height": 60
+        }
+    },
+    "headline": "The race to the top of a bug bounty program",
+    "url": "https://gerbenjavado.com/the-race-to-the-top-of-a-bug-bounty-program/",
+    "datePublished": "2017-07-25T12:54:54.000Z",
+    "dateModified": "2018-03-30T13:09:09.000Z",
+    "description": "Recently I had unusual success on a public program on HackerOne. Here is my story on how I approached this program, what I found and how I found it. July the 1st troubleshooter shared a link in the Bug Bounty Forum Slack channel, showing that a public HackerOne program was",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://gerbenjavado.com/"
+    }
+}
+    </script>
+  </head>
+
+  <body class="post-template">
+
+    <div class="masthead">
+        <div class="container">
+            <h2 class="masthead-title">
+                <a href="https://gerbenjavado.com" title="Home">Gerben Javado</a>
+                <small>Security &amp; Bug Bounty Stories</small>
+            </h2>
+        </div>
+        <nav class="nav container">
+        <a class="nav-item sidebar-nav-home " href="https://gerbenjavado.com/">
+            <i class="nav-icon icon-home"></i>
+        </a>
+        <a class="nav-item sidebar-nav-hackerone " href="https://hackerone.com/gerben_javado">
+            <i class="nav-icon icon-hackerone"></i>
+        </a>
+        <a class="nav-item sidebar-nav-linkedin " href="https://www.linkedin.com/in/gerben-janssen-van-doorn-85aa70131/">
+            <i class="nav-icon icon-linkedin"></i>
+        </a>
+        <a class="nav-item sidebar-nav-twitter " href="https://twitter.com/gerben_javado">
+            <i class="nav-icon icon-twitter"></i>
+        </a>
+        <a class="nav-item sidebar-nav-github " href="https://github.com/GerbenJavado/">
+            <i class="nav-icon icon-github"></i>
+        </a>
+        <a class="nav-item sidebar-nav-user " href="https://gerbenjavado.com/about-me/">
+            <i class="nav-icon icon-user"></i>
+        </a>
+</nav>
+
+    </div>
+    <div class="container tag-nav"></div>
+
+    <div class="container content">
+        
+<article class="post">
+
+    
+    <header class="post-header">
+      <h1 class="post-title">The race to the top of a bug bounty program</h1>
+      <section class="post-meta">
+          <time class="post-date" datetime="2017-07-25">July 25, 2017</time>
+          <span class="tags"></span>
+      </section>
+      
+  </header>
+
+
+    <section class="post-content">
+      <p>Recently I had unusual success on a public program on HackerOne. Here is my story on how I approached this program, what I found and how I found it.</p>
+<p>July the 1st <a href="https://hackerone.com/troubleshooter">troubleshooter</a> shared a link in the <a href="https://bugbountyforum.com/">Bug Bounty Forum</a> Slack channel, showing that a public HackerOne program was going to pay for valid security issues (if I had been subscribed to the HackerOne feature <code>Notify me of changes</code> I would have known it even earlier). Since it is currently my summer holiday and I imagined that relatively not many people would have seen this news, I decided to give this program a go. After a short while I noticed that this program would be an interesting target since:</p>
+<ul>
+<li>I found a few reflective XSS issues</li>
+<li>The application is coded in PHP</li>
+<li>They seemed to heavily rely on the Akamai WAF <a href="https://www.akamai.com/us/en/resources/waf.jsp">Kona</a>.</li>
+<li>A big scope with multiple apps and privilege levels (customer, manager, admin)</li>
+</ul>
+<h1 id="encryptedid">Encrypted ID</h1>
+<p>The first big problem I found relied on the way orders are displayed to the user. This website uses two different ways to refer to orders. Their numeric ID (<code>29456739</code>) or their encrypted ID (<code>eQaqdv</code>). The problem I noticed here quite quickly is that the encrypted ID has very little entropy and gives access to the order details no matter which user is logged using the following request:</p>
+<pre><code>POST /order_handling.php HTTP/1.1
+Host: www.company.com
+Content-Type: application/x-www-form-urlencoded; charset=UTF-8
+Content-Length: 39
+Cookie: {COOKIE}
+
+case=orderdetail&amp;res_id=1&amp;tab_id=eQaqdv
+</code></pre>
+<p>Thus to test if brute forcing this encrypted ID was feasible, I used Burp Intruder with the brute force option. Here I chose to only brute force A-Z with a minimum and maximum of 2 characters. This way I would only send 676 requests. After this brute force was completed, I was greeted with the following screen, confirming 9 valid orders out of the 676 requests. Resulting in a 1,3% success rate. This request leaked full address, first and last name, phone number, the order, payment method and payment instructions among other details.</p>
+<p><img src="/content/ZsAZgT1.png" alt="Results"></p>
+<p>Later I discovered an endpoint that would take any numeric value and output it as the corresponding encrypted ID. This made brute forcing unnecessary and allowed me to exploit another order bug where brute forcing was not feasible. Looking for these kind of &quot;translations&quot; can be super usefull, especially if you are bad at breaking encryption like me.</p>
+<h1 id="mobileapp">Mobile app</h1>
+<p>After these issues it was time to move on to the mobile app, since in my experience a mobile app has more server-side (read critical) issues, while a web application has more client-side vulnerabilities. After testing the login flow for the three different options: Facebook, Google and password based, I noticed that Google login looked slightly weird in the fact that a lot of data was send besides the Google OAuth token. Thus I started stripping parameters one by one after which I noticed that only the <strong>email</strong> of a user was required to login. This request would look like:</p>
+<pre><code>POST /v2/authenticate.json?isGoogle=true HTTP/1.1
+X-PUBLIC-API-Key: 1bc29b36f623ba82aaf6724fd3b16718
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 21
+Host: api.company.com
+Connection: close
+
+email=help@company.com</code></pre>
+<p>Thus I could login as any user given I knew their email address.</p>
+<h1 id="businessapp">Business App</h1>
+<p>This login vulnerability gave me access to a test account of the company which had a couple test venues setup in the Business app of the company. Using this account I logged in and noticed that this part of the scope was definitely under-tested compared to the part where the normal customer gets access to (basically this part is only for venue-owners).</p>
+<p>One of the features that was interesting right of the bet was the possibility to add a secondary owner to your venue. After stripping the unnecessary parameters I got the following request:</p>
+<pre><code>POST /v2/addsecondaryowner.json HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 58
+Host: api.company.com
+X-PUBLIC-API-Key: 1bc29b36f623ba82aaf6724fd3b16718
+X-Access-Token: {VALID_ACCESS_TOKEN}
+X-Client-Id: company_ownerandroid_v2
+
+res_id=313227&amp;name=Admin&amp;email=invite@example.com</code></pre>
+<p>This request would invite invite@example.com to venue 313227. The problem here is that any venue ID would work, giving the attacker the possibility to invite himself to any venue. Upon further investigation adding a single quote would make the server return a 500 status error, which.... SCREAMS SQLi. Exploitation was fairly straight forward (Akamai wasn't set to filter as aggressively as it currently does) with the payload <code>res_id=)+AND+SLEEP(5)%23</code>.</p>
+<h1 id="hardcodedcredentials">Hardcoded credentials</h1>
+<p>After this I found myself diving deep in their mobile application, since they allowed me to interact with the main website without the Akamai WAF in between and because I had found issues, like the one above, in the API before. Thus to discover more endpoints, I decompiled the app to smali and Java. After this I used the following grep command on the smali code to find more endpoints:</p>
+<pre><code>$ grep -hnr '\.json' /Users/Gerben/Downloads/App/smali/
+</code></pre>
+<p>However after looking for these grepped .json endpoints in the Java source code I accidently came across hardcoded credentials for a user <code>cdev</code> in the source code:</p>
+<pre><code class="java">paramaa.e().b("Authorization", "Basic BASE64CredentialString");</code></pre>
+<p>I didn't know what to do with this right away. I left it for a while after which I started doing some searches for cdev. Here I found out that this was referring to a certain top domain. Most of these (sub)domains returned a 503 error at the time. So again I couldn't use the credentials. At this point I decided to enumerate the subdomains which I did with <a href="https://github.com/michenriksen/aquatone">aquatone</a>. This showed that some of its subdomains were online and would accept the credentials I found. The problem at this point was that I wasn't able to find anything interesting on these domains. This however changed at the end of the domain scan where aquatone found <code>vikad.topdomain.com</code>. Logging into this domain gave me access to an admin account on a clone of the main domain of the company, giving me access to all the domain tools they use on their main domain.</p>
+<h1 id="leveragingjsfiles">Leveraging JS files</h1>
+<p>BAMMmm... 5 minutes after logging in to this developer subdomain the entire top domain went offline 😕. However since I had Burp Suite running I had collected all the JS files served to the admin endpoints. After analyzing these files using <a href="https://github.com/GerbenJavado/LinkFinder">LinkFinder</a> I noticed a few new endpoints that normal users had access to.</p>
+<p>Thus I started reconstructing the endpoints found in the JavaScript files and started to manually test them for IDOR or SQLi vulnerabilities. Here is one of them:</p>
+<pre><code>return HOST + &quot;owner_proof_upload.php?type=upload-tan&quot; + &quot;&amp;expected_files=&quot; + t.t_files + &quot;&amp;file_index=&quot; + (e + 1) + &quot;&amp;session_id=&quot; + $(&quot;.session-id&quot;).val() + &quot;&amp;owner_id=&quot; + $(&quot;#owner-id&quot;).data(&quot;owner-id&quot;) + &quot;&amp;tan_number=&quot; + $(&quot;#owner-tan-number&quot;).val()
+</code></pre>
+<p>This endpoint would show <code>{&quot;message&quot;:&quot; File type not allowed.&quot;}</code>, however after injecting a single quote into the merchant_id the server returned a 500 HTTP error, which.... SCREAMS SQLi (again). After fuzzing around, while avoiding the banned keywords like <code>SLEEP</code>, <code>BENCHMARK</code> or the <code>=</code> characters, I noticed that the server would return a different response when inserting a true <code>OR</code> statement. After I had managed to do this I developed a POC showing possible data retrieval like:</p>
+<p><a href="https://www.company.com/owner_proof_upload.php?type=upload-tan&amp;owner_id=444+OR+MID(CURRENT_USER,1,1)+LIKE+%22p%22/**/%23">https://www.company.com/owner_proof_upload.php?type=upload-tan&amp;owner_id=444+OR+MID(CURRENT_USER,1,1)+LIKE+&quot;p&quot;/**/%23</a></p>
+<p>Which returns <code>{&quot;status&quot;:&quot;error&quot;,&quot;message&quot;:&quot;TAN Number is already approved!&quot;}</code> because the first character of <code>CURRENT_USER</code> is a <code>p</code>. If false the server would return <code>{&quot;message&quot;:&quot; File type not allowed.&quot;}</code> like normal. Here I used the following strings instead of their more common counterpart to bypass the WAF:</p>
+<ul>
+<li><code>MID</code> instead of <code>SUBSTRING</code></li>
+<li><code>LIKE</code> instead of <code>=</code></li>
+<li><code>/**/</code> instead of a space</li>
+<li><code>CURRENT_USER</code> instead of <code>CURRENT_USER()</code></li>
+<li><code>&quot;</code> instead of <code>'</code></li>
+</ul>
+<h1 id="thingstolearnfromthis">Things to learn from this</h1>
+<ol>
+<li>Try to expand the scope using the vulnerabilities you found or by simply asking for a privileged account (2nd one is better but not always possible). A lot of the vulnerabilities I found in this program required some special privilege to find.</li>
+<li>Try your best to search extra information about potential vulnerabilities you find. Later I heard the hardcoded credentials had been reported before, however since no additional information about exploitation had been given the report was marked informative. Note that for these hardcoded credentials there were multiple invalid ones in the Android app as well.</li>
+<li>Be connected. Make sure you use multiple channels to stay up to date about security and bug bounty news. For me these channels are: Bug Bounty Forum, Twitter and HackerOne. By getting information about this program through Slack I was able to find bugs that opened up a &quot;hidden&quot; part of the application which I might not have found if I started later.</li>
+</ol>
+<p><em>*Some information has been changed to keep the company private. Permission for this blog was granted.</em></p>
+
+    </section>
+
+  <footer class="post-footer">
+        <div class="more-posts">
+            <span class="pull-left"><a href="/manual-sql-injection-discovery-tips/">⇠  Manual SQL injection discovery tips</a></span>
+        <span class="pull-right"><a href="/discovering-hidden-content-using-linkfinder/">Discovering hidden endpoints using LinkFinder ⇢ </a></span>
+        </div>
+  </footer>
+
+</article>
+
+    </div>
+
+    <script type="text/javascript" data-cfasync="false" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
+    <script type="text/javascript" src="/assets/js/highlight.pack.js?v=8cf6512093"></script>
+    <script type="text/javascript" src="/assets/js/gallery.js?v=8cf6512093"></script>
+    <script type="text/javascript" src="/assets/js/prism.js?v=8cf6512093"></script>
+    <script type="text/javascript" src="/assets/js/oscar.js?v=8cf6512093" data-cfasync="false"></script>
+    
+    <script>hljs.initHighlightingOnLoad();</script>
+
+    
+  </body>
+</html>
+

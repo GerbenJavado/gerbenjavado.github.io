@@ -1,0 +1,168 @@
+
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <link href="//gmpg.org/xfn/11" rel="profile">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+    <!-- Enable responsiveness on mobile devices-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+    <title>Discovering hidden endpoints using LinkFinder</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="/assets/css/highlight.css?v=8cf6512093">
+    <link rel="stylesheet" type="text/css" href="/assets/css/prism.css?v=8cf6512093">
+    <link rel="stylesheet" type="text/css" href="/assets/css/poole.css?v=8cf6512093">
+    <link rel="stylesheet" type="text/css" href="/assets/css/icon.css?v=8cf6512093">
+    <link rel="stylesheet" type="text/css" href="/assets/css/syntax.css?v=8cf6512093">
+    <link rel="stylesheet" type="text/css" href="/assets/css/oscar.css?v=8cf6512093">
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Lato:100,300,300italic">
+
+    <!-- Icons -->
+    <link rel="shortcut icon" href="/favicon.ico">
+
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="canonical" href="https://gerbenjavado.com/discovering-hidden-content-using-linkfinder/" />
+    <meta name="referrer" content="no-referrer-when-downgrade" />
+    <link rel="amphtml" href="https://gerbenjavado.com/discovering-hidden-content-using-linkfinder/amp/" />
+    
+    <meta property="og:site_name" content="Gerben Javado" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Discovering hidden endpoints using LinkFinder" />
+    <meta property="og:description" content="For those who don&#x27;t know me I am Gerben Janssen van Doorn (online known as: &amp;quot;gerben_javado&amp;quot;). Im a 21-year-old bug bounty hunter mainly working on HackerOne and a business student. I felt it was time to give back to the community, because up until now I have" />
+    <meta property="og:url" content="https://gerbenjavado.com/discovering-hidden-content-using-linkfinder/" />
+    <meta property="article:published_time" content="2017-06-25T12:10:00.000Z" />
+    <meta property="article:modified_time" content="2018-03-30T13:08:22.000Z" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Discovering hidden endpoints using LinkFinder" />
+    <meta name="twitter:description" content="For those who don&#x27;t know me I am Gerben Janssen van Doorn (online known as: &amp;quot;gerben_javado&amp;quot;). Im a 21-year-old bug bounty hunter mainly working on HackerOne and a business student. I felt it was time to give back to the community, because up until now I have" />
+    <meta name="twitter:url" content="https://gerbenjavado.com/discovering-hidden-content-using-linkfinder/" />
+    <meta name="twitter:label1" content="Written by" />
+    <meta name="twitter:data1" content="Gerben Javado" />
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "Gerben Javado",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://gerbenjavado.com/favicon.ico",
+            "width": 60,
+            "height": 60
+        }
+    },
+    "headline": "Discovering hidden endpoints using LinkFinder",
+    "url": "https://gerbenjavado.com/discovering-hidden-content-using-linkfinder/",
+    "datePublished": "2017-06-25T12:10:00.000Z",
+    "dateModified": "2018-03-30T13:08:22.000Z",
+    "description": "For those who don&#x27;t know me I am Gerben Janssen van Doorn (online known as: &amp;quot;gerben_javado&amp;quot;). Im a 21-year-old bug bounty hunter mainly working on HackerOne and a business student. I felt it was time to give back to the community, because up until now I have",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://gerbenjavado.com/"
+    }
+}
+    </script>
+
+  </head>
+
+  <body class="post-template">
+
+    <div class="masthead">
+        <div class="container">
+            <h2 class="masthead-title">
+                <a href="https://gerbenjavado.com" title="Home">Gerben Javado</a>
+                <small>Security &amp; Bug Bounty Stories</small>
+            </h2>
+        </div>
+        <nav class="nav container">
+        <a class="nav-item sidebar-nav-home " href="https://gerbenjavado.com/">
+            <i class="nav-icon icon-home"></i>
+        </a>
+        <a class="nav-item sidebar-nav-hackerone " href="https://hackerone.com/gerben_javado">
+            <i class="nav-icon icon-hackerone"></i>
+        </a>
+        <a class="nav-item sidebar-nav-linkedin " href="https://www.linkedin.com/in/gerben-janssen-van-doorn-85aa70131/">
+            <i class="nav-icon icon-linkedin"></i>
+        </a>
+        <a class="nav-item sidebar-nav-twitter " href="https://twitter.com/gerben_javado">
+            <i class="nav-icon icon-twitter"></i>
+        </a>
+        <a class="nav-item sidebar-nav-github " href="https://github.com/GerbenJavado/">
+            <i class="nav-icon icon-github"></i>
+        </a>
+        <a class="nav-item sidebar-nav-user " href="https://gerbenjavado.com/about-me/">
+            <i class="nav-icon icon-user"></i>
+        </a>
+</nav>
+
+    </div>
+    <div class="container tag-nav"></div>
+
+    <div class="container content">
+        
+<article class="post">
+
+    
+    <header class="post-header">
+      <h1 class="post-title">Discovering hidden endpoints using LinkFinder</h1>
+      <section class="post-meta">
+          <time class="post-date" datetime="2017-06-25">June 25, 2017</time>
+          <span class="tags"></span>
+      </section>
+      
+  </header>
+
+
+    <section class="post-content">
+      <p>For those who don't know me I am Gerben Janssen van Doorn (online known as: &quot;gerben_javado&quot;). Im a 21-year-old bug bounty hunter mainly working on <a href="https://hackerone.com/gerben_javado">HackerOne</a> and a business student. I felt it was time to give back to the community, because up until now I have been fairly silent. Thus, to change this I setup this blog to share information about some of my findings. Let's get to it!</p>
+<p>It is no secret that JavaScript files can contain endpoints and/or information that is not disclosed elsewhere in the application. The problem with these JavaScript files is that they are often very large (&gt;1 mb) and minified which makes reading them manually very time consuming. To battle this problem I have created <a href="https://github.com/GerbenJavado/LinkFinder">LinkFinder</a>, a python script which uses <a href="https://github.com/beautify-web/js-beautify">jsbeautifier</a> in combination with a fairly large regular expression. This to (hopefully) find all endpoints in a JavaScript file, while also delivering the context around the endpoint. To give a short description on the regex: it consists of four small regexes. These are responsible for finding:</p>
+<ul>
+<li>Full URLs (<a href="https://example.com/*">https://example.com/*</a>)</li>
+<li>Absolute URLs or dotted URLs (/* or ../*)</li>
+<li>Relative URLs with atleast one slash (text/test.php)</li>
+<li>Relative URLs without a slash (test.php)</li>
+</ul>
+<p>Further details plus the source code can be found on <a href="https://github.com/GerbenJavado/LinkFinder">https://github.com/GerbenJavado/LinkFinder</a>, for the rest of this blog post I would like to focus on one of the results it has brought me.</p>
+<p><img src="/content/JfcpYok-1.png" alt="LinkFinder" title="LinkFinder in action"> <em>Output of LinkFinder</em></p>
+<h4 id="practicalexample"><strong>Practical example</strong></h4>
+<p>Running LinkFinder on the JavaScript files of one of my private (not public 😕) programs*, like:</p>
+<pre><code class="shell">$ linkfinder.py -i https://www.company.com/static/js/file.js -o 1.html</code></pre>
+<p>Got me among other stuff the following code snippet:</p>
+<pre><code>ajax.request('/company/api/original-owner', {
+</code></pre>
+<p>After manually going to the JavaScript file and searching for the string above I found out that the endpoint simply required an <code>id</code> GET parameter, specifying which resource should be requested. Supplying the endpoint with an ID linked to staff users of this program revealed the <strong>hashed password</strong>, email, user agent &amp; verification key of that member among other sensitive information in JSON format. A simple IDOR, but only found at a later stage of the program because it was hidden in a large JavaScript file. Upon triage this issue was classed P1 by the program.</p>
+<p>This example also points out that while LinkFinder automates a big part of the process, it is still up to the user to go through the results and inspect them carefully. A lot of the times parameters are not on the same line as the endpoint and should be looked for in the orginal file. Finally, I hope the tool will be a nice addition to your arsenal and will help you in discovering a larger part of an application. Good luck!</p>
+<h4 id="furtherreading"><strong>Further reading</strong></h4>
+<p><a href="http://buer.haus/2017/03/09/airbnb-chaining-third-party-open-redirect-into-server-side-request-forgery-ssrf-via-liveperson-chat/">SSRF using hidden endpoints in JS files</a> &amp; <a href="http://buer.haus/2017/03/31/airbnb-web-to-app-phone-notification-idor-to-view-everyones-airbnb-messages/">IDOR leaking Airbnb messages in JS files</a> By: NahamSec &amp; Ziot</p>
+<p>*<em>Endpoints have been modified to keep the company private, while keeping the data as close to the original as possible.</em></p>
+
+    </section>
+
+  <footer class="post-footer">
+        <div class="more-posts">
+            <span class="pull-left"><a href="/the-race-to-the-top-of-a-bug-bounty-program/">⇠  The race to the top of a bug bounty program</a></span>
+        </div>
+  </footer>
+
+</article>
+
+    </div>
+
+    <script type="text/javascript" data-cfasync="false" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
+    <script type="text/javascript" src="/assets/js/highlight.pack.js?v=8cf6512093"></script>
+    <script type="text/javascript" src="/assets/js/gallery.js?v=8cf6512093"></script>
+    <script type="text/javascript" src="/assets/js/prism.js?v=8cf6512093"></script>
+    <script type="text/javascript" src="/assets/js/oscar.js?v=8cf6512093" data-cfasync="false"></script>
+    
+    <script>hljs.initHighlightingOnLoad();</script>
+
+    
+  </body>
+</html>
+

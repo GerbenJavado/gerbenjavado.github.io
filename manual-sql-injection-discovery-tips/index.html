@@ -1,0 +1,208 @@
+
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <link href="//gmpg.org/xfn/11" rel="profile">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+    <!-- Enable responsiveness on mobile devices-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+    <title>Manual SQL injection discovery tips</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="/assets/css/highlight.css?v=8cf6512093">
+    <link rel="stylesheet" type="text/css" href="/assets/css/prism.css?v=8cf6512093">
+    <link rel="stylesheet" type="text/css" href="/assets/css/poole.css?v=8cf6512093">
+    <link rel="stylesheet" type="text/css" href="/assets/css/icon.css?v=8cf6512093">
+    <link rel="stylesheet" type="text/css" href="/assets/css/syntax.css?v=8cf6512093">
+    <link rel="stylesheet" type="text/css" href="/assets/css/oscar.css?v=8cf6512093">
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Lato:100,300,300italic">
+
+    <!-- Icons -->
+    <link rel="shortcut icon" href="/favicon.ico">
+
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="canonical" href="https://gerbenjavado.com/manual-sql-injection-discovery-tips/" />
+    <meta name="referrer" content="no-referrer-when-downgrade" />
+    <link rel="amphtml" href="https://gerbenjavado.com/manual-sql-injection-discovery-tips/amp/" />
+    
+    <meta property="og:site_name" content="Gerben Javado" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Manual SQL injection discovery tips" />
+    <meta property="og:description" content="According to bugbountyforum.com&#x27;s AMA format one of the most popular questions is How do you test for Server Side vulnerabilities such as SQLi?. Up until recently I was struggling with this question (especially towards SQLi) as well. The SQLi&#x27;s I did find were often discovered and exploited by sqlmap" />
+    <meta property="og:url" content="https://gerbenjavado.com/manual-sql-injection-discovery-tips/" />
+    <meta property="article:published_time" content="2017-08-26T17:19:22.000Z" />
+    <meta property="article:modified_time" content="2017-12-09T23:53:57.000Z" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Manual SQL injection discovery tips" />
+    <meta name="twitter:description" content="According to bugbountyforum.com&#x27;s AMA format one of the most popular questions is How do you test for Server Side vulnerabilities such as SQLi?. Up until recently I was struggling with this question (especially towards SQLi) as well. The SQLi&#x27;s I did find were often discovered and exploited by sqlmap" />
+    <meta name="twitter:url" content="https://gerbenjavado.com/manual-sql-injection-discovery-tips/" />
+    <meta name="twitter:label1" content="Written by" />
+    <meta name="twitter:data1" content="Gerben Javado" />
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "Gerben Javado",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://gerbenjavado.com/favicon.ico",
+            "width": 60,
+            "height": 60
+        }
+    },
+    "headline": "Manual SQL injection discovery tips",
+    "url": "https://gerbenjavado.com/manual-sql-injection-discovery-tips/",
+    "datePublished": "2017-08-26T17:19:22.000Z",
+    "dateModified": "2017-12-09T23:53:57.000Z",
+    "description": "According to bugbountyforum.com&#x27;s AMA format one of the most popular questions is How do you test for Server Side vulnerabilities such as SQLi?. Up until recently I was struggling with this question (especially towards SQLi) as well. The SQLi&#x27;s I did find were often discovered and exploited by sqlmap",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://gerbenjavado.com/"
+    }
+}
+    </script>
+  </head>
+
+  <body class="post-template">
+
+    <div class="masthead">
+        <div class="container">
+            <h2 class="masthead-title">
+                <a href="https://gerbenjavado.com" title="Home">Gerben Javado</a>
+                <small>Security &amp; Bug Bounty Stories</small>
+            </h2>
+        </div>
+        <nav class="nav container">
+        <a class="nav-item sidebar-nav-home " href="https://gerbenjavado.com/">
+            <i class="nav-icon icon-home"></i>
+        </a>
+        <a class="nav-item sidebar-nav-hackerone " href="https://hackerone.com/gerben_javado">
+            <i class="nav-icon icon-hackerone"></i>
+        </a>
+        <a class="nav-item sidebar-nav-linkedin " href="https://www.linkedin.com/in/gerben-janssen-van-doorn-85aa70131/">
+            <i class="nav-icon icon-linkedin"></i>
+        </a>
+        <a class="nav-item sidebar-nav-twitter " href="https://twitter.com/gerben_javado">
+            <i class="nav-icon icon-twitter"></i>
+        </a>
+        <a class="nav-item sidebar-nav-github " href="https://github.com/GerbenJavado/">
+            <i class="nav-icon icon-github"></i>
+        </a>
+        <a class="nav-item sidebar-nav-user " href="https://gerbenjavado.com/about-me/">
+            <i class="nav-icon icon-user"></i>
+        </a>
+</nav>
+
+    </div>
+    <div class="container tag-nav"></div>
+
+    <div class="container content">
+        
+<article class="post">
+
+    
+    <header class="post-header">
+      <h1 class="post-title">Manual SQL injection discovery tips</h1>
+      <section class="post-meta">
+          <time class="post-date" datetime="2017-08-26">August 26, 2017</time>
+          <span class="tags"></span>
+      </section>
+      
+  </header>
+
+
+    <section class="post-content">
+      <p>According to bugbountyforum.com's AMA format one of the most popular questions is <code>How do you test for Server Side vulnerabilities such as SQLi?</code>. Up until recently I was struggling with this question (especially towards SQLi) as well. The SQLi's I did find were often discovered and exploited by <a href="http://sqlmap.org/">sqlmap</a> after I found that the server responded weirdly to a single quote. However in the last 2 months I was forced to dive deeper into manual SQLi discovery since my target has a strong firewall making sqlmap useless (and yes, I looked into --tamper). In these two months I was able to find over 10 SQLi which I learned a ton from. This blog will focus on sharing my process and knowledge as well as showing real world examples. I will divide the blog in two parts: discovery and exploitation, since both are needed for a good report. Finally, this blog assumes MySQL is used since it holds over half of the market share.</p>
+<h1 id="discovery">Discovery</h1>
+<p>The first part of finding a valid SQLi is the discovery of the vulnerability. Here the most important thing is to know in which SQL context your input can end up. Here some basic examples:</p>
+<ul>
+<li>
+<pre><code>SELECT user_input FROM tournament ORDER BY region;</code></pre>
+</li>
+<li>
+<pre><code>INSERT INTO tbl_name (col1,col2) VALUES (15,user_input);</code></pre>
+</li>
+<li>
+<pre><code>DELETE FROM somelog WHERE texts = 'user_input'</code></pre>
+</li>
+</ul>
+<p>Here we can see our <code>user_input</code> ending up in range of different contexts: between <code>()</code>, between <code>'</code> or without any delimiters. What these commands all have in common is that they will all turn invalid once a <code>'</code> is injected as input. The first two don't even have delimiters and will also give an error if a non-existing system variable is used, like: <code>@@versionz</code> (instead of <code>@@version</code>).</p>
+<p>Once you are able to make the server return an error (mostly HTTP 500 status) you have to confirm it is the SQL command that is causing the error and not something like a date parser. To do this you can use a range of tricks:</p>
+<ul>
+<li>If a <code>'</code> is causing the error try to see if <code>\'</code> will result in success message (since the backslash cancels out the single quote in MySQL).</li>
+<li>You can also try if commenting out the <code>'</code> results in a success message like: <code>%23'</code> or <code>--'</code>. This is because you tell MySQL to explicitly ignore everything after the comment include the extra <code>'</code>.</li>
+<li>If a <code>'</code> is not allowed you can use comparisons between valid and invalid system variables like <code>@@versionz</code> vs <code>@@version</code> or invalid vs valid functions <code>SLEP(5)</code> vs <code>SLEEP(5)</code>.</li>
+<li>Sometimes your input will end up between <code>()</code> make sure you test <code>input)%23</code> as well to see if you can break out of these and exploit Union SQLi for example (<code>input) order by 5%23</code>).</li>
+<li>If the normal input is just an integer you can try to subtract some amount of it and see if that subtraction works (<code>id=460-5</code>).</li>
+<li>Try to see if an even amount of quotes results in a success message (for example <code>460''</code> or <code>460-''</code>) and an uneven amount results in an error (for example  <code>460'</code> or <code>460-'''</code>).</li>
+</ul>
+<h3 id="example">Example</h3>
+<p>To make this more clear we have the following URL:<br>
+<a href="https://www.example.com/php/sales_dash_poc_handle.php?action=month-breakdown&amp;type_of_report=billing&amp;city=all&amp;month=8&amp;year=2017&amp;poc=35141008">https://www.example.com/php/sales_dash_poc_handle.php?action=month-breakdown&amp;type_of_report=billing&amp;city=all&amp;month=8&amp;year=2017&amp;poc=35141008</a></p>
+<p>This basic URL returns a 200 status code. The input <code>poc=35141008'</code> returns a 500 error and <code>poc=35141008'%23</code> does as well, but <code>poc=35141008''</code> returns a 200 status. This hints that the parameter is likely not using any delimiters, thus I tried <code>poc=35141008%23'</code> which would return a 200 status code. Now we know that we can inject simply between <code>35141008</code> and <code>%23</code>. After this I tried a simple <code>35141008 OR 2 LIKE 2%23</code> which worked while <code>35141008 OR 2 LIKE 1%23</code> returned a 500 error, proving that boolean SQLi was possible here. It isn't however always this easy and this example doesn't show much impact, this is were the next section comes in, proving data retrieval.</p>
+<h1 id="exploitation">Exploitation</h1>
+<p>After you have found a SQLi you always have to try to proof at least a difference in output (for boolean and sleep based) or sensitive data in the output (for error and union based). Unfortunately this is not always straightforward especially with firewalls and blacklisting in the way. This section is to help you get around those.</p>
+<h3 id="firewall">Firewall</h3>
+<p>The first thing you should try when dealing with a firewall is see if you can find a misconfiguration in the setup. For most of these firewalls and CDN's you can access the unprotected website by visiting the original IP (which the firewall is standing in front of) and then using the original domain name as host value. The first step here is to find the original IP of the website, this is often not too hard using services that keep track of the IP's a website has used (<a href="http://viewdns.info/iphistory/">http://viewdns.info/iphistory/</a>). Often the one used before the firewall IP comes in is the one they still use (basically the one after it says cloudflare or akamai). Shodan can also be really usefull when it comes to finding an original IP.</p>
+<p>After you have found the original IP address try to access the website with the original Host header. In cURL this works like this (adding a header also works in sqlmap):</p>
+<pre><code>$ curl --header 'Host: www.example.com' 'https://54.165.170.2/' -v -k
+</code></pre>
+<p>On my target this was unfortunately forbidden, thus I had to be creative. Here I found that by adding a dot to the host (<code>www.example.com.</code>) wouldn't be restricted and still allowed me to browse the direct IP. Adding:</p>
+<pre><code class="nohighlight">54.165.170.2	www.example.com</code></pre>
+<p>in your /etc/hosts file will allow you to browse www.example.com in the browser without any firewall in between. From here any restrictions should be gone and SQLi exploitation should be fairly easy.</p>
+<h3 id="bypassingtheblacklist">Bypassing the blacklist</h3>
+<p>Sometimes you can't bypass the firewall which will require you to bypass the (likely) blacklist that is in place. Here my biggest tip is that Google is your friend. Find niche functions with powerful capabilities that require you to somehow extract data. However here are some of the common tips:</p>
+<ul>
+<li>Using comments in your query as spaces to break a firewall regex or word combination. For example: <code>2/*dhab bc*/OR/*dahdshka*/2/*sd*/LIKE/*da*/&quot;2&quot;/**/%23</code> translates to: <code>2 OR 2=2%23</code>.</li>
+<li>Use LIKE instead of =, 2 instead of 1 and &quot; instead of ' as the example shows above. Many people are lazy and so are firewalls, walking the path less traveled will catch many firewalls off guard.</li>
+<li>Like I said above use Google to find niche functions. I found for example that <code>MID()</code> works the same as <code>SUBSTRING()</code>, however the latter was banned the first one wasn't. Same goes for variables <code>CURRENT_USER()</code> is banned and <code>CURRENT_USER</code> wasn't.</li>
+</ul>
+<h1 id="puttingitalltogether">Putting it all together</h1>
+<p>Out of the SQL injections found this was probably my favorite since the exploitation was fairly hard. So I'll describe it in detail and hope that you guys can learn something from it.</p>
+<p>I came across this URL:<br>
+<a href="https://www.example.com/php/analyticsExcel.php?action=res_unique_analytics&amp;resid=2100935&amp;start_date=2016-07-11%2000:00:00&amp;end_date=2017-08-11%2023:59:59&amp;action=res_unique_analytics&amp;entity_type=restaurant">https://www.example.com/php/analyticsExcel.php?action=res_unique_analytics&amp;resid=2100935&amp;start_date=2016-07-11 00:00:00&amp;end_date=2017-08-11 23:59:59&amp;action=res_unique_analytics&amp;entity_type=restaurant</a></p>
+<p>Here I have legitimate access to 2100935 and requesting 2100934 would result in an unauthenticated error. The weird thing was that adding a single quote after 2100935 would result in a 500 status error and adding two would make the URL work again. Here to make exploitation easier I used my <code>www.example.com.</code> bypass (described in the Firewall section to get rid of the Akamai WAF). From there I tried to find a place to inject my own SQL commands in the input, however I didn't manage to inject a comment in the string, thus I concluded the query was quite complex. Seeing this I decided to focus on a simpler OR statement which can be injected almost anywhere. Here I noticed that <code>' OR 1='1</code> would return a 200 status, <code>' OR 1='2</code> would be exactly the same, <code>' AND 1='1</code> the same, <code>' AND 1='2</code> the same and finally none of the sleep() commands seem to have any effect.</p>
+<p>Super weird I can basically confirm the syntax I injected is correct but none of the techniques allowed to extract data. Here I tried <code>' OR @@version=5</code> which resulted in a 200 status and <code>' OR @@versionz=5</code> resulted in a 500 error. This at least confirmed I was working with MySQL and showed that the injection was really there. This pointed me towards the MySQL <a href="https://dev.mysql.com/doc/refman/5.7/en/if.html">IF</a> function. My thought was that if I was able to return an invalid function based on whether the if statement was true or false I could proof data extraction. This didn't go quite as planned since MySQL seems to validate command before executing the IF statement, but the IF statement ended up being part of the solution. Feeding a valid SLEEP command in the IF statement with a positive integer would result in the server timing out, while return a simple integer from the IF statement would return in a fast 200 status code. From here I developed the following POC:</p>
+<p>TRUE: if @@version starts with a 5:<br>
+<code>2100935' OR IF(MID(@@version,1,1)='5',sleep(1),1)='2</code><br>
+Response:<br>
+HTTP/1.1 500 Internal Server Error</p>
+<p>False: if @@version starts with a 4:<br>
+<code>2100935' OR IF(MID(@@version,1,1)='4',sleep(1),1)='2</code><br>
+Response:<br>
+HTTP/1.1 200 OK</p>
+<h1 id="summary">Summary</h1>
+<p>If injecting a single quote leads to different output in the response try the different techniques outlined in this blog to see if you are dealing with a SQLi. After you have determined in which SQL context you are working develop a POC that either shows sensitive data (error and union based) or shows a difference in output depending on whether the question asked is true or false (boolean and time based).</p>
+
+    </section>
+
+  <footer class="post-footer">
+        <div class="more-posts">
+            <span class="pull-left"><a href="/recon-android-apps-to-widen-scope/">⇠  Recon Android apps to widen scope</a></span>
+        <span class="pull-right"><a href="/the-race-to-the-top-of-a-bug-bounty-program/">The race to the top of a bug bounty program ⇢ </a></span>
+        </div>
+  </footer>
+
+</article>
+
+    </div>
+
+    <script type="text/javascript" data-cfasync="false" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
+    <script type="text/javascript" src="/assets/js/highlight.pack.js?v=8cf6512093"></script>
+    <script type="text/javascript" src="/assets/js/gallery.js?v=8cf6512093"></script>
+    <script type="text/javascript" src="/assets/js/prism.js?v=8cf6512093"></script>
+    <script type="text/javascript" src="/assets/js/oscar.js?v=8cf6512093" data-cfasync="false"></script>
+    
+    <script>hljs.initHighlightingOnLoad();</script>
+
+    
+  </body>
+</html>
+
