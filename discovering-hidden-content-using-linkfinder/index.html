@@ -120,7 +120,6 @@
 
 
     <section class="post-content">
-<a href="intent://example.com#Intent;scheme=https;end">click</a>
       <p>For those who don't know me I am Gerben Janssen van Doorn (online known as: &quot;gerben_javado&quot;). Im a 21-year-old bug bounty hunter mainly working on <a href="https://hackerone.com/gerben_javado">HackerOne</a> and a business student. I felt it was time to give back to the community, because up until now I have been fairly silent. Thus, to change this I setup this blog to share information about some of my findings. Let's get to it!</p>
 <p>It is no secret that JavaScript files can contain endpoints and/or information that is not disclosed elsewhere in the application. The problem with these JavaScript files is that they are often very large (&gt;1 mb) and minified which makes reading them manually very time consuming. To battle this problem I have created <a href="https://github.com/GerbenJavado/LinkFinder">LinkFinder</a>, a python script which uses <a href="https://github.com/beautify-web/js-beautify">jsbeautifier</a> in combination with a fairly large regular expression. This to (hopefully) find all endpoints in a JavaScript file, while also delivering the context around the endpoint. To give a short description on the regex: it consists of four small regexes. These are responsible for finding:</p>
 <ul>
